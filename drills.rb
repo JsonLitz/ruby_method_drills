@@ -3,26 +3,36 @@
 #########################
 #say_hello
   # returns 'hello'
-
+  def say_hello
+    'hello'
+  end
 #echo
   # returns the input string
-
+  def echo (input)
+    input
+  end
 #eddie_izzards_height
-  # calculates and returns Eddie Izzard's height 
+  # calculates and returns Eddie Izzard's height
   # takes in the height of heels he's wearing (default value: 0)
   # and adds heel height to his base 67 inches for the result
-
+  def eddie_izzards_height (heel_height=0)
+  67 + heel_height
+  end
 #how_many_args
   # accepts any number of arguments without complaint
   # returns the total number of arguments passed to the function
   # Hint: google ruby *args
-
-#find_answer 
+  def how_many_args (*input)
+    input.count
+  end
+#find_answer
   # returns the value associated with the 'answer' keyword argument
   # returns nil if it cannot find the 'answer' keyword argument
   # complains when given non-keyword arguments
   # Hint: google ruby keyword arguments
-
+  def find_answer(foo={})
+    foo[:answer]
+  end
 ##############################
 #### MANIPULATING STRINGS ####
 ##############################
@@ -30,51 +40,72 @@
   # takes in a word
   # returns the first letter of the word
   # lowercases the first letter of the word
-
+  def first_char (input)
+    input[0].downcase
+  end
 #polly_wanna
   # takes in a word
   # echoes the original word
   # repeats the original word 3 times
   # returns a string with the word repeated
-
+  def polly_wanna (foo)
+    foo*3
+  end
 #count_chars
   # takes in a word
   # returns the number of characters in the word
-
+  def count_chars (foo)
+    foo.length
+  end
 #yell
   # takes in a message
   # convert the message to uppercase
   # adds an exclamation point to the end of the message
   # returns the message
-
+  def yell (foo)
+  foo.upcase + "!"
+  end
 ## STRETCH ##
 #to_telegram
   # takes in a message
   # replaces periods with ' STOP'
   # returns the updated message
-
-
+  def to_telegram (foo)
+    foo.gsub(/[.]/, " STOP")
+  end
 #spell_out
   # takes in a string
   # converts the string to lowercase
   # returns the input string, with characters seperated by dashes
-
+  def spell_out (foo)
+ foo.downcase.split("").join("-")
+    end
 
 #seperate
   # takes in a string
   # seperates characters with a custom seperator, when supplied with one
   # seperates characters with dashes (by default)
   # returns the modified string
+def seperate (foo, bar="-")
+    foo.split("").join(bar)
+end
 
 ## STRETCH ##
 #croon
   # seperates word characters with dashes
   # preserves whitespace between words
+  def croon(foo)
+    foo.split(" ").map{|taco|taco.split("").join("-")}.join(" ")
+  end
+
 
 #palindrome_word?
   # determines whether a single word is a palindrome
   # ignores case
   # returns true or false
+def palindrome_word? (foo)
+foo.downcase == foo.downcase.reverse
+end
 
 
 ## SUPER STRETCH ##
@@ -105,40 +136,63 @@
   # takes in a string
   # counts the spaces in a string
   # returns number of spaces
-
+  def count_spaces (foo)
+    foo.count(" ")
+  end
 #string_lengths
   # takes in an array of strings
   # returns an array containing the lengths of the strings
-
+def string_lengths (foo)
+  foo.map {|word| word.length }
+end
 #remove_falsy_values
   # takes in a list
   # filters out falsy values from a list
   # returns the updated list
-
+  def remove_falsy_values(foo)
+    foo.select { |bar| !!bar }
+  end
 #exclude_last
   # takes in an array or string
   # removes the last item from the array or string
   # returns it
+def exclude_last (array)
+  array[0..-2]
+end
 
 #exclude_first
   # takes in an array or string
   # removes the first item from an array
   # removes the first character from a string
   # returns a new string - does not alter the original input (non-destructive)
-
+def exclude_first (array)
+  array[1..-1]
+end
 #exclude_ends
   # takes in an array or string
   # removes the first and last items from an array
   # removes the first and last characters from a string
-
+def exclude_ends (array)
+  array[1..-2]
+end
 #select_every_even
   # takes in an array
   # returns a list of even-indexed items from the input
-
+def select_every_even (array)
+  array.values_at(*array.each_index.select {|i| i.even?})
+  #.values_at -  returns values at given keys; can be used on hashes as well
+  #.each_index - passes index of selected value
+  #.select - grabs the element by that index. This is done after creating the values by which we select the elements
+  #* - we need the splat because the input argument is only 1 array
+end
 #select_every_odd
   # takes in an array
   # returns a list of odd-indexed items
+def select_every_odd (array)
+  array.values_at(*array.each_index.select {|i| i.odd?})
+end
 
+# arr = ['1','2','3','4','5','6','7']
 #select_every_n
   # takes in an array
   # returns a list of items at an index evenly divisible by n
